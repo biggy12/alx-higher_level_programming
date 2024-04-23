@@ -1,9 +1,26 @@
 #!/usr/bin/node
-/* a script that searches the second biggest integer in the list of arguments */
+
 const len = process.argv.length;
-if (len <= 3) {
-  console.log(0);
+const nums = process.argv.slice(2).map(function (n) {
+  return parseInt(n);
+});
+const max = Math.max.apply(Math, nums);
+const min = Math.min.apply(Math, nums);
+
+if (len > 3) {
+  let i = 0;
+  let n = 0;
+  let secBig = min;
+
+  for (; i < len; ++i) {
+    n = nums[i];
+
+    if (n > secBig && n < max) {
+      secBig = n;
+    }
+  }
+
+  console.log(secBig);
 } else {
-  const args = process.argv.map(Number).slice(2, len).sort((a, b) => a - b);
-  console.log(args[args.length - 2]);
+  console.log(0);
 }

@@ -1,14 +1,19 @@
 #!/usr/bin/node
-/* script that prints a asquare */
-const arg = parseInt(process.argv[2]);
-if (isNaN(arg)) {
-  console.log('Missing size');
-} else {
-  for (let i = 0; i < arg; i++) {
-    let row = '';
-    for (let j = 0; j < arg; j++) {
-      row += 'X';
+
+const size = parseInt(process.argv[2]);
+
+if (size) {
+  for (let i = 0; i < size; ++i) {
+    let j = 0;
+
+    for (; j < size; ++j) {
+      process.stdout.write('X');
     }
-    console.log(row);
+
+    if (j === size) {
+      console.log('');
+    }
   }
+} else {
+  console.log('Missing size');
 }
